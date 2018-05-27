@@ -1,0 +1,23 @@
+\vbox{
+\begin{verbatim}
+struct Ogg_Stream {
+  struct* Ogg_page;
+};
+
+struct Ogg_page {
+  uint8[4] Ogg_Magic_Number = "OggS" /* the Ogg magic number */
+  uint8    Version = 0;
+  uint8    Header_Type;              /* type of page that follows: BOS, Continuation or EOS */
+  uint64   Granule Position;         /* A time marker */
+  uint32   Bit-stream_Serial_Number; /* Identifies the stream in multi-stream seqs */
+  uint32   Page_Sequence_Number;
+  uint32   CRC32,
+  uint8    Page_Segmens;             /* Number of segments in this page */
+  struct   Segment_Table;
+};
+
+struct Segment_Table {
+  uint8* Segment_Length; /* In bytes */
+};
+\end{verbatim}
+}

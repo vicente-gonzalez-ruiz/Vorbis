@@ -6,4 +6,4 @@ set xlabel "$t$ (time)"
 #set ylabel ""
 set output "window.fig"
 set key spacing 3
-plot "window.dat" using :1 title "Rectangular", "window.dat" using :2 title "$\\sin\\Big(\\frac{\\pi}{2}\\sin^2((t+0.5)\\pi)\\Big)$"
+plot "window.dat" title "$\\sin\\Big(\\frac{\\pi}{2}\\sin^2((t+0.5)\\pi)\\Big)$" with lines

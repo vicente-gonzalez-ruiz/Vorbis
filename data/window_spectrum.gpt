@@ -5,4 +5,4 @@ set xlabel "$w$ (angular frequency)"
 #set ylabel ""
 set key spacing 3
 set output "window_spectrum.fig"
-plot [0:500] "window_spectrum.dat" using :1 title "Rectangular" , "window_spectrum.dat" using :2 title "$|{\\cal FT}\\Big[\\sin\\Big(\\frac{\\pi}{2}\\sin^2((t+0.5)\\pi)\\Big)\\Big]|$" 
+plot [0:500] "spectrum_window.dat" title "$|{\\cal FT}\\Big[\\sin\\Big(\\frac{\\pi}{2}\\sin^2((t+0.5)\\pi)\\Big)\\Big]|$" with lines

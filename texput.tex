@@ -169,6 +169,7 @@ Uses \href{https://en.wikipedia.org/wiki/Modified_discrete_cosine_transform}{MFC
 
 %}}}
 
+
 \section{MDCT (Modified Discrete Cosine Transform)}
 \begin{itemize}
 \item Equivalent to apply a
@@ -186,10 +187,10 @@ Uses \href{https://en.wikipedia.org/wiki/Modified_discrete_cosine_transform}{MFC
   defined as:
 \begin{equation}
   S[w] =
-  \sum_{n=0}^{2N-1}s[n]cos\Big[\frac{\pi}{N}(n+\frac{1}{2}+\frac{N}{2})(w+\frac{1}{2})\B
-    ig].
+  \sum_{n=0}^{2N-1}s[n]cos\Big[\frac{\pi}{N}(n+\frac{1}{2}+\frac{N}{2})(w+\frac{1}{2})\Big].
   \label{eq:MDCT}
 \end{equation}
+\end{itemize}
 
 \section{Windowing}
 %{{{
@@ -203,22 +204,8 @@ Uses \href{https://en.wikipedia.org/wiki/Modified_discrete_cosine_transform}{MFC
     computed spectrum of the finite sequence}:
 \end{itemize}
 
-\begin{center}
-\ifx \HCode\Undef
-
-  \begin{tabular}{cc}
-    \includegraphics[width=0.45\textwidth]{window} &
-    \includegraphics[width=0.45\textwidth]{window_spectrum}
-  \end{tabular}
-
-\else
-
-  \begin{tabular}{c}
-    \includegraphics[width=0.45\textwidth]{window} \\
-    \includegraphics[width=0.45\textwidth]{window_spectrum}
-  \end{tabular}
-\fi
-\end{center}
+\fig{400}{window.png}
+\fig{400}{window_spectrum.png}
 
 %}}}
 
@@ -348,7 +335,7 @@ Uses \href{https://en.wikipedia.org/wiki/Modified_discrete_cosine_transform}{MFC
 
 %}}}
 
-\section{Perceptual quantization & white-noise filling}
+\section{Perceptual quantization \& white-noise filling}
 
 \begin{itemize}
 \item Depending on the desired output bit-rate and the frequency (see

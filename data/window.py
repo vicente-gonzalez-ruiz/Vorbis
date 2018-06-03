@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 
 import numpy as np
+import math
 
-x = np.concatenate((np.full(190, 0.0), np.hanning(20)/10, np.full(190, 0.0)))
+x = np.full(400, 0.0)
+for i in range(20):
+    tmp = math.sin((i+0.5)/20.0*math.pi)
+    tmp *= tmp
+    x[i+190] = math.sin(0.5*math.pi*tmp)
 
-np.savetxt("hanning.dat", x)
+np.savetxt("window.dat", x)

@@ -1,11 +1,11 @@
 <!DOCTYPE html> 
 <html> 
-<head> <title>Vorbis</title> 
+<head> <title>Vorbis audio coding</title> 
 <meta charset="UTF-8" /> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
 <link rel="stylesheet" type="text/css" href="index.css" /> 
 <script type="text/javascript" 
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" 
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" 
 ></script> 
 <style type="text/css"> 
 .MathJax_MathML {text-indent: 0;} 
@@ -20,333 +20,162 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
                                                                   
 
-<h2 class="titleHead">Vorbis</h2>
+<h2 class="titleHead">Vorbis audio coding</h2>
  <div class="author" ><span 
 class="ecrm-1200">Vicente Gonz</span><span 
 class="ecrm-1200">á</span><span 
 class="ecrm-1200">lez Ruiz</span></div><br />
 <div class="date" ><span 
-class="ecrm-1200">June 3, 2018</span></div>
+class="ecrm-1200">December 31, 2018</span></div>
    </div>
-   <h3 class="likesectionHead"><a 
- id="x1-1000"></a>Contents</h3>
    <div class="tableofcontents">
    <span class="sectionToc" >1 <a 
-href="#x1-20001" id="QQ2-1-2">What is Vorbis?</a></span>
+href="#x1-10001" id="QQ2-1-1">Steps</a></span>
 <br />   <span class="sectionToc" >2 <a 
-href="#x1-30002" id="QQ2-1-3">What is Ogg Vorbis?</a></span>
+href="#x1-20002" id="QQ2-1-2">Overlaped processing</a></span>
 <br />   <span class="sectionToc" >3 <a 
-href="#x1-40003" id="QQ2-1-4">Why Vorbis born?</a></span>
+href="#x1-30003" id="QQ2-1-3">Channel coupling</a></span>
 <br />   <span class="sectionToc" >4 <a 
-href="#x1-50004" id="QQ2-1-5">How Vorbis is used?</a></span>
+href="#x1-40004" id="QQ2-1-4">Perceptual quantization &#x0026; white-noise ﬁlling</a></span>
 <br />   <span class="sectionToc" >5 <a 
-href="#x1-60005" id="QQ2-1-6">Who uses Vorbis?</a></span>
-<br />   <span class="sectionToc" >6 <a 
-href="#x1-70006" id="QQ2-1-7">Licensing</a></span>
-<br />   <span class="sectionToc" >7 <a 
-href="#x1-80007" id="QQ2-1-8">The Vorbis encoder</a></span>
-<br />   <span class="sectionToc" >8 <a 
-href="#x1-90008" id="QQ2-1-9">Overlaped processing</a></span>
-<br />   <span class="sectionToc" >9 <a 
-href="#x1-100009" id="QQ2-1-10">MDCT (Modiﬁed Discrete Cosine Transform)</a></span>
-<br />   <span class="sectionToc" >10 <a 
-href="#x1-1100010" id="QQ2-1-11">Windowing</a></span>
-<br />   <span class="sectionToc" >11 <a 
-href="#x1-1200011" id="QQ2-1-12">Quantization</a></span>
-<br />   <span class="sectionToc" >12 <a 
-href="#x1-1300012" id="QQ2-1-13">Floor and residue encoding</a></span>
-<br />   <span class="sectionToc" >13 <a 
-href="#x1-1400013" id="QQ2-1-14">Vorbis’s VQ (Vector Quantization)</a></span>
-<br />   <span class="sectionToc" >14 <a 
-href="#x1-1500014" id="QQ2-1-15">Huﬀman coding</a></span>
-<br />   <span class="sectionToc" >15 <a 
-href="#x1-1600015" id="QQ2-1-16">Packet “peeling”</a></span>
-<br />   <span class="sectionToc" >16 <a 
-href="#x1-1700016" id="QQ2-1-17">Channel coupling</a></span>
-<br />   <span class="sectionToc" >17 <a 
-href="#x1-1800017" id="QQ2-1-18">Perceptual quantization &#x0026; white-noise ﬁlling</a></span>
-<br />   <span class="sectionToc" >18 <a 
-href="#x1-1900018" id="QQ2-1-19">What is Ogg?</a></span>
-<br />   <span class="sectionToc" >19 <a 
-href="#x1-2000019" id="QQ2-1-20">The Ogg format</a></span>
+href="#x1-60005" id="QQ2-1-6">Entropy coding</a></span>
    </div>
-                                                                  
-
-                                                                  
-<!--l. 8--><p class="noindent" >
-</p>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
- id="x1-20001"></a>What is Vorbis?</h3>
-     <ul class="itemize1">
-     <li class="itemize">Vorbis <span class="cite">[<a 
-href="#XVorbis">1</a>, <a 
-href="#XVorbis-doc">2</a>]</span>  is  a  lossy  perceptual  (psycho  acoustic)  digital  audio
-     compressor.
+ id="x1-10001"></a>Steps</h3>
+<!--l. 13--><p class="noindent" >
+     </p><ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-1002x1">Overlaped subband analysis using <a 
+href="http://en.wikipedia.org/wiki/Modified_discrete_cosine_transform" >MDCT</a>.
      </li>
-     <li class="itemize">The encoder inputs <a 
-href="../Digital_Signals/index.html" >PCM (digital)</a> audio and outputs Ogg data.
-     <div class="center" 
->
-<!--l. 16--><p class="noindent" >
-                                                                  
-
-                                                                  
-</p>
-<div class="verbatim" id="verbatim-1">
-     PCM   +---------+  Ogg   +---------+ PCM
-      <br />-----&#x003E;| Encoder |-------&#x003E;| Decoder |-----&#x003E;
-      <br />audio +---------+ stream +---------+ audio’
-      <br />
-      <br />              audio != audio’
-</div>
-<!--l. 23--><p class="nopar" ></p></div>
-     </li></ul>
-<!--l. 29--><p class="noindent" >
+     <li 
+  class="enumerate" id="x1-1004x2">Perceptual quantization.
+     </li>
+     <li 
+  class="enumerate" id="x1-1006x3">Entropy coding.</li></ol>
+<!--l. 25--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
- id="x1-30002"></a>What is Ogg Vorbis?</h3>
-     <ul class="itemize1">
-     <li class="itemize">Ogg Vorbis is a:
-         <ul class="itemize2">
-         <li class="itemize">fully open, non-proprietary, patent-and-royalty-free,
-         </li>
-         <li class="itemize">general-purpose compressed <span 
-class="ecti-1000">audio format</span>
-         </li>
-         <li class="itemize">for mid to high quality (8 kHz - 48.0 kHz, 16 bit, polyphonic) audio
-         (human voice, e.g.) and music
-         </li>
-         <li class="itemize">at ﬁxed and variable bitrates from 30 to 500 kbps/channel.</li></ul>
-     </li></ul>
-<!--l. 46--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
- id="x1-40003"></a>Why Vorbis born?</h3>
+ id="x1-20002"></a>Overlaped processing</h3>
                                                                   
 
                                                                   
-     <ul class="itemize1">
-     <li class="itemize">In September 1998 the Fraunhofer Society sends a <a 
-href="https://www.chillingeffects.org/patent/notice.cgi?NoticeID=464" >letter of infringement</a>
-     to  several  small  commercial  and  open  source  MPEG  audio  layer  3
-     development projects, announcing plans to charge licensing fees for the
-     MP3 audio format.
-     </li>
-     <li class="itemize">In that moment and for that reason (among others), a company named
-     Xiphophorus and founded by Chris Montgomery, starts to develop the
-     open-source Vorbis and Ogg projects.</li></ul>
-<!--l. 61--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
- id="x1-50004"></a>How Vorbis is used?</h3>
-     <ul class="itemize1">
-     <li class="itemize">Unfortunately,  the  technical  information  about  how  Vorbis  works
-     is  quite  obscure.  However,  there  is  a  set  of  libraries  and  tools
-     <a 
-href="http://www.vorbis.com/setup_linux/" >libogg/libvorbis/vorbis-tools</a> that do the hard work for the programmers.
-     The Xiph.org foundation maintains these source/binary codes.
-     </li>
-     <li class="itemize">Several <a 
-href="http://www.vorbis.com/software/" >independent open-source encoders and players</a> are also available.</li></ul>
-<!--l. 76--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
- id="x1-60005"></a>Who uses Vorbis?</h3>
-<div class="center" 
->
-<!--l. 79--><p class="noindent" >
-</p>
-<div class="tabular"> <table id="TBL-2" class="tabular" 
-cellspacing="0" cellpadding="0" rules="groups" 
-><colgroup id="TBL-2-1g"><col 
-id="TBL-2-1" /></colgroup><colgroup id="TBL-2-2g"><col 
-id="TBL-2-2" /></colgroup><colgroup id="TBL-2-3g"><col 
-id="TBL-2-3" /></colgroup><colgroup id="TBL-2-4g"><col 
-id="TBL-2-4" /></colgroup><tr 
-class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
- style="vertical-align:baseline;" id="TBL-2-1-"><td  style="text-align:right; white-space:nowrap;" id="TBL-2-1-1"  
-class="td11">          <a 
-href="http://evolver.fm/2013/05/13/spotify-uses-different-audio-formats-depending-on-platform/" >Spotify</a>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-2-1-2"  
-class="td11"> <a 
-href="http://audacity.sourceforge.net/about/features" >Audacity</a>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-2-1-3"  
-class="td11"> <a 
-href="http://www.winamp.com/plugin/ogg-vorbis-encoder-v1-1/143936" >WinAmp</a>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-2-1-4"  
-class="td11"> <a 
-href="http://gstreamer.freedesktop.org/documentation/plugins.html" >GStreamer</a>  </td>
-</tr><tr 
-class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
- style="vertical-align:baseline;" id="TBL-2-2-"><td  style="text-align:right; white-space:nowrap;" id="TBL-2-2-1"  
-class="td11"> <a 
-href="http://www.fsf.org/campaigns/playogg/en/" >VLC Media Player</a>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-2-2-2"  
-class="td11">   <a 
-href="http://en.wikipedia.org/wiki/Use_of_Ogg_formats_in_HTML5" >Firefox</a>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-2-2-3"  
-class="td11">  <a 
-href="http://en.wikipedia.org/wiki/Use_of_Ogg_formats_in_HTML5" >Chrome</a>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-2-2-4"  
-class="td11">   <a 
-href="http://en.wikipedia.org/wiki/HTML5_video" >Android</a>  </td>
-</tr><tr 
-class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
- style="vertical-align:baseline;" id="TBL-2-3-"><td  style="text-align:right; white-space:nowrap;" id="TBL-2-3-1"  
-class="td11">          <a 
-href="http://www.w3.org/wiki/HTML/Elements/video" >HTML5</a>  </td><td  style="text-align:right; white-space:nowrap;" id="TBL-2-3-2"  
-class="td11">          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-2-3-3"  
-class="td11">          </td><td  style="text-align:right; white-space:nowrap;" id="TBL-2-3-4"  
-class="td11">           </td>
-</tr><tr 
-class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
- style="vertical-align:baseline;" id="TBL-2-4-"><td  style="text-align:right; white-space:nowrap;" id="TBL-2-4-1"  
-class="td11">                  </td></tr></table></div></div>
-                                                                  
-
-                                                                  
-<!--l. 102--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
- id="x1-70006"></a>Licensing</h3>
-     <ul class="itemize1">
-     <li class="itemize">Vorbis is used under the BSD (Berkeley Software Distribution) license, which
-     basically means:
-         <ol  class="enumerate1" >
-         <li 
-  class="enumerate" id="x1-7002x1">You  can  use  the  source  code  to  develop  new  open  source  BSD
-         applications and
-         </li>
-         <li 
-  class="enumerate" id="x1-7004x2">you can use the source code to develop propietary applications.</li></ol>
-     </li></ul>
-<!--l. 119--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
- id="x1-80007"></a>The Vorbis encoder</h3>
-<div class="center" 
->
-<!--l. 122--><p class="noindent" >
-                                                                  
-
-                                                                  
-</p>
-<div class="verbatim" id="verbatim-2">
-          PCM   +---------+  Ogg
- <br />          -----&#x003E;| Encoder |-------&#x003E;
- <br />          audio +---------+ stream
- <br />               /           \
- <br />            /                 \
- <br />         /                       \
- <br />     /                               \
- <br /> /                                       \
- <br />+--------+    +-----+    +---+    +-------+
- <br />| W+MDCT |---&#x003E;| SAM |---&#x003E;| Q |---&#x003E;| VQ+HE |
- <br />+--------+    +-----+    +---+    +-------+
- <br />
- <br />W+MDCT = Windowed Modified Discrete Cosine Transform
- <br />SAM = pSycho Acoustic Model
- <br />Q = Quantization
- <br />VQ+HE = Vector Quantization + Huffman Encoding
-</div>
-<!--l. 140--><p class="nopar" ></p></div>
-<!--l. 145--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
- id="x1-90008"></a>Overlaped processing</h3>
-<!--l. 148--><p class="noindent" >Uses <a 
-href="https://en.wikipedia.org/wiki/Modified_discrete_cosine_transform" >MFCT</a>.
-</p>
-<div class="center" 
->
-<!--l. 150--><p class="noindent" >
-                                                                  
-
-                                                                  
-</p>
-<div class="verbatim" id="verbatim-3">
+   <div class="verbatim" id="verbatim-1">
 0              N-1            2N-1            3N-1
  <br />+---------------+---------------+---------------+ s[n]
  <br />&#x003C;--------Transform Step---------&#x003E;
  <br />                &#x003C;---------Transform Step--------&#x003E;
 </div>
-<!--l. 156--><p class="nopar" ></p></div>
+<!--l. 31--><p class="nopar" >
+</p>
      <ul class="itemize1">
-     <li class="itemize">Each transform step inputs <!--l. 160--><math 
+     <li class="itemize">Each transform step inputs <!--l. 35--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mn>2</mn><mi 
->N</mi></math>
-     samples and outputs <!--l. 160--><math 
+display="inline" ><mrow 
+><mn>2</mn><mi 
+>N</mi></mrow></math>
+     samples and outputs <!--l. 35--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->N</mi></math>
+display="inline" ><mrow 
+><mi 
+>N</mi></mrow></math>
      MDCT coeﬁcients.
      </li>
-     <li class="itemize"><!--l. 162--><math 
+     <li class="itemize"><!--l. 38--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->N</mi></math>
+display="inline" ><mrow 
+><mi 
+>N</mi></mrow></math>
      can vary depending on the characteristics of the sound. For <span 
 class="ecti-1000">complex </span>sounds
      without  clear  armonics  (such  as  a  plosive  sound),  shortened  windows
      improve the performance. For <span 
 class="ecti-1000">simple </span>sounds (such as a music instrument),
-     large windows are better.
-     </li>
-     <li class="itemize">The window size (<!--l. 166--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->N</mi></math>)
-     must me a power of two between 64 and 8192 samples.</li></ul>
-<!--l. 173--><p class="noindent" >
+     large windows are better.</li></ul>
+<!--l. 44--><p class="noindent" >
 </p>
-   <h3 class="sectionHead"><span class="titlemark">9   </span> <a 
- id="x1-100009"></a>MDCT (Modiﬁed Discrete Cosine Transform)</h3>
-     <ul class="itemize1">
-     <li class="itemize">Equivalent to apply a <a 
-href="http://en.wikipedia.org/wiki/Filter_bank" >bank</a> of <!--l. 176--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->N</mi></math>
-     ﬁlters.
-     </li>
-     <li class="itemize">Determines the correlation between a set of <!--l. 178--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mn>2</mn><mi 
->N</mi></math>
-     numbers (samples) and <!--l. 179--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->N</mi></math>
-     <a 
-href="http://en.wikipedia.org/wiki/Orthogonality" >orthogonal</a><span class="footnote-mark"><a 
-href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
- id="x1-10001f1"></a> 
-     <a 
-href="http://guru.multimedia.cx/mdct/" >cosine functions</a>. Therefore, at the input of the DCT there are <!--l. 184--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mn>2</mn><mi 
->N</mi></math>
-     samples and at the output, <!--l. 185--><math 
- xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
->N</mi></math>
-     coeﬃcients.
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Channel coupling</h3>
+<!--l. 45--><p class="noindent" >Most of the time, similar sounds are transported in the channels of a non-mono audio
+signal. Channel coupling decreases inter-channel redundancy, usually, using
+prediction techniques.
+</p><!--l. 49--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Perceptual quantization &#x0026; white-noise ﬁlling</h3>
+<!--l. 50--><p class="noindent" >Depending on the desired output bit-rate and the frequency (see the ATH model),
+the SAM applies a diﬀerent quantization step to barks (see Section~<span 
+class="ecbx-1000">??</span>). Roughly
+speaking, the higher the compression ratio, the larger the quantization step and
+therefore, the quantization noise; and the higher the frequency, the wider the bark.
+Notice also that the perception of a tone in a bark depends also on the temporal
+masking.
+</p><!--l. 58--><p class="indent" >   At decoding time, those barks that suﬀered the biggest lossess are usually ﬁlled
+with <a 
+href="http://en.wikipedia.org/wiki/White_noise" >white noise</a> in order to <a 
+href="http://simplynoise.com/" >increase the perceived quality</a>.
                                                                   
 
                                                                   
-     </li>
-     <li class="itemize">The MDCT coeﬃcients <!--l. 186--><math 
+</p><!--l. 64--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-50004.1"></a>MDCT (Modiﬁed Discrete Cosine Transform)</h4>
+     <ul class="itemize1">
+     <li class="itemize">Equivalent to apply a <a 
+href="http://en.wikipedia.org/wiki/Filter_bank" >bank</a> of <!--l. 68--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
+display="inline" ><mrow 
+><mi 
+>N</mi></mrow></math>
+     ﬁlters.
+     </li>
+     <li class="itemize">Determines the correlation between a set of <!--l. 71--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mrow 
+><mn>2</mn><mi 
+>N</mi></mrow></math>
+     numbers (samples) and <!--l. 72--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mrow 
+><mi 
+>N</mi></mrow></math>
+     <a 
+href="http://en.wikipedia.org/wiki/Orthogonality" >orthogonal</a><span class="footnote-mark"><a 
+href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-5001f1"></a> 
+     <a 
+href="http://guru.multimedia.cx/mdct/" >cosine functions</a>. Therefore, at the input of the DCT there are <!--l. 77--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mrow 
+><mn>2</mn><mi 
+>N</mi></mrow></math>
+     samples and at the output, <!--l. 78--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mrow 
+><mi 
+>N</mi></mrow></math>
+     coeﬃcients.
+     </li>
+     <li class="itemize">The MDCT coeﬃcients <!--l. 80--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mrow 
+><mi 
 >S</mi><mrow ><mo 
 class="MathClass-open">[</mo><mrow><mi 
 >w</mi></mrow><mo 
-class="MathClass-close">]</mo></mrow></math>
-     of the PCM samples <!--l. 186--><math 
+class="MathClass-close">]</mo></mrow></mrow></math>
+     of the PCM samples <!--l. 80--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
-display="inline" ><mi 
+display="inline" ><mrow 
+><mi 
 >s</mi><mrow ><mo 
 class="MathClass-open">[</mo><mrow><mi 
 >n</mi></mrow><mo 
-class="MathClass-close">]</mo></mrow></math>
+class="MathClass-close">]</mo></mrow></mrow></math>
      are deﬁned as: <table class="equation"><tr><td> <a 
- id="x1-10002r1"></a>
-     <!--l. 188--><math 
+ id="x1-5002r1"></a>
+     <!--l. 82--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                   <mi 
@@ -401,243 +230,25 @@ open="]"  close="" ><mrow></mrow></mfenced></mstyle><mo
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">(1)</td></tr></table>
      </li></ul>
-<!--l. 195--><p class="noindent" >
+<!--l. 88--><p class="noindent" >
 </p>
-   <h3 class="sectionHead"><span class="titlemark">10   </span> <a 
- id="x1-1100010"></a>Windowing</h3>
-     <ul class="itemize1">
-     <li class="itemize">Samples  are  windowed  before  the  transform  because  this  acurates  the
-     spectral energy estimation<span class="footnote-mark"><a 
-href="index3.html#fn2x0"><sup class="textsuperscript">2</sup></a></span><a 
- id="x1-11001f2"></a> :</li></ul>
-<!--l. 207--><p class="noindent" > <div style="text-align:center;"> <img height=400 src="data/window.png" /> </div>   <div style="text-align:center;"> <img height=400 src="data/window_spectrum.png" /> </div> 
-</p><!--l. 212--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">11   </span> <a 
- id="x1-1200011"></a>Quantization</h3>
-     <ul class="itemize1">
-     <li class="itemize">These are the quantization levels available for Vorbis:
-     <div class="center" 
->
-<!--l. 217--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-60005"></a>Entropy coding</h3>
+<!--l. 89--><p class="noindent" >VLC of MDCT coeﬃcients.
                                                                   
 
                                                                   
+</p><!--l. 91--><p class="noindent" >
 </p>
-<div class="tabular"> <table id="TBL-3" class="tabular" 
-cellspacing="0" cellpadding="0" rules="groups" 
-><colgroup id="TBL-3-1g"><col 
-id="TBL-3-1" /></colgroup><colgroup id="TBL-3-2g"><col 
-id="TBL-3-2" /></colgroup><tr  
- style="vertical-align:baseline;" id="TBL-3-1-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-1-1"  
-class="td11"> Quality  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-1-2"  
-class="td11"> Expected bit-rate (Kbps)  </td>
-</tr><tr 
-class="hline"><td><hr /></td><td><hr /></td></tr><tr  
- style="vertical-align:baseline;" id="TBL-3-2-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-2-1"  
-class="td11">      -2  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-2-2"  
-class="td11"> 32                                </td></tr><tr  
- style="vertical-align:baseline;" id="TBL-3-3-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-3-1"  
-class="td11"> -1 </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-3-2"  
-class="td11"> 45</td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-3-4-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-4-1"  
-class="td11">       0  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-4-2"  
-class="td11"> 64                                </td></tr><tr  
- style="vertical-align:baseline;" id="TBL-3-5-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-5-1"  
-class="td11"> 1 </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-5-2"  
-class="td11"> 80</td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-3-6-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-6-1"  
-class="td11">       2  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-6-2"  
-class="td11"> 96                                </td></tr><tr  
- style="vertical-align:baseline;" id="TBL-3-7-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-7-1"  
-class="td11"> 3 </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-7-2"  
-class="td11"> 112</td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-3-8-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-8-1"  
-class="td11">       4  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-8-2"  
-class="td11"> 128                               </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-3-9-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-9-1"  
-class="td11">       5  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-9-2"  
-class="td11"> 160                               </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-3-10-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-10-1"  
-class="td11">       6  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-10-2"  
-class="td11"> 192                               </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-3-11-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-11-1"  
-class="td11">       7  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-11-2"  
-class="td11"> 224                               </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-3-12-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-12-1"  
-class="td11">       8  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-12-2"  
-class="td11"> 256                               </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-3-13-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-13-1"  
-class="td11">       9  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-13-2"  
-class="td11"> 320                               </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-3-14-"><td  style="text-align:right; white-space:nowrap;" id="TBL-3-14-1"  
-class="td11">      10  </td><td  style="text-align:left; white-space:nowrap;" id="TBL-3-14-2"  
-class="td11"> 500                               </td>
-</tr></table></div></div>
-     </li></ul>
-<!--l. 249--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">5.1   </span> <a 
+ id="x1-70005.1"></a>Stream format</h4>
+<!--l. 92--><p class="noindent" > <div style="text-align:center;"> <img width=800 src="graphics/Ogg_Stream.png" /> </div> 
+</p><!--l. 94--><p class="noindent" >
 </p>
-   <h3 class="sectionHead"><span class="titlemark">12   </span> <a 
- id="x1-1300012"></a>Floor and residue encoding</h3>
-     <ul class="itemize1">
-     <li class="itemize">The quantized frequency spectrum is approximated with a polynomial
-     (the ﬂoor curve). This curve is lossless encoded and has much less data
-     (coeﬃcients) and information than the quantized spectrum.
-     </li>
-     <li class="itemize">The  diﬀerence  (residue)  between  the  ﬂoor  curve  and  the  quantized
-     spectrum is <a 
-href="http://www.data-compression.com/vq.shtml" >VQ</a>+<a 
-href="../Text_Coding/index.html#x1-6900015" >Huﬀman</a> (lossy) encoded.</li></ul>
-<!--l. 265--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">5.2   </span> <a 
+ id="x1-80005.2"></a>Window</h4>
+<!--l. 95--><p class="noindent" > <div style="text-align:center;"> <img width=400 src="graphics/window.png" /> </div>   <div style="text-align:center;"> <img width=400 src="graphics/window_spectrum.png" /> </div> 
 </p>
-   <h3 class="sectionHead"><span class="titlemark">13   </span> <a 
- id="x1-1400013"></a>Vorbis’s VQ (Vector Quantization)</h3>
-     <ul class="itemize1">
-     <li class="itemize">Embedded (truncable) CBR (Constant Bit-Rate) lossy encoding.
-     </li>
-     <li class="itemize">Minimize quantization error when tuples of symbols are encoded.
-     <div class="center" 
->
-<!--l. 271--><p class="noindent" >
-                                                                  
-
-                                                                  
-</p>
-<div class="verbatim" id="verbatim-4">
-      tuples  +---------+ code-vectors
-      <br />--------&#x003E;| Encoder |---------&#x003E;
-      <br />         +---------+
-</div>
-<!--l. 276--><p class="nopar" ></p></div>
-     </li>
-     <li class="itemize">A output code-vector is the index of the tuple in the codebook (the set of
-     code-vectors) that is most similar to the input tuple.
-     </li>
-     <li class="itemize">In Vorbis, the code-book is computed for each audio sequence.</li></ul>
-<!--l. 285--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">14   </span> <a 
- id="x1-1500014"></a>Huﬀman coding</h3>
-     <ul class="itemize1">
-     <li class="itemize">Variable bit-rate (VBR) lossless encoder.
-     </li>
-     <li class="itemize">The  Huﬀman  codes  are  computed  using  the  probabilities  of  the
-     code-vectors, ﬂoor coeﬃcients, etc.
-     </li>
-     <li class="itemize">This lossless stage increase the compression ratio of the spectral residues.</li></ul>
-<!--l. 298--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">15   </span> <a 
- id="x1-1600015"></a>Packet “peeling”</h3>
-     <ul class="itemize1">
-     <li class="itemize">Because the order in which the infomation is written into a Vorbis packet
-     (ﬁrt the ﬂoor data and next the residue data), these can be truncated in
-     order to reduce the bit-rate, without re-encoding.</li></ul>
-                                                                  
-
-                                                                  
-<!--l. 306--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">16   </span> <a 
- id="x1-1700016"></a>Channel coupling</h3>
-     <ul class="itemize1">
-     <li class="itemize">Vorbis supports up to 255 channels.
-     </li>
-     <li class="itemize">Most of times, similar sounds are transported in several channels.
-     </li>
-     <li class="itemize">Channel coupling decreases inter-channel redundancy.
-     </li>
-     <li class="itemize">Residue spectrums of mutichannel audios tend to be correlated.
-     </li>
-     <li class="itemize">The diﬀerences between these residue spectrums are coded using one of the
-     following methods:
-         <ol  class="enumerate1" >
-         <li 
-  class="enumerate" id="x1-17002x1"><span 
-class="ecbx-1000">Lossless coupling: </span>All stereo information (diﬀerences between left
-         and right samples) is lossless compressed. This provides the maximal
-         quality but the minimal compression.
-         </li>
-         <li 
-  class="enumerate" id="x1-17004x2"><span 
-class="ecbx-1000">Phase  stereo: </span>Stereo  information  is  quantized  and  compressed.
-         Sterie information is represented in a square polar representation
-         (module and phase) and phase is quantized.
-         </li>
-         <li 
-  class="enumerate" id="x1-17006x3"><span 
-class="ecbx-1000">Point  stereo:  </span>All  polar  (stereo)  information  is  discarded.  In
-         this  case,  all  the  stereo  information  comes  from  the  diﬀerence  in
-         the  spectral  ﬂoors  for  the  channels.  This  provides  the  maximal
-         compression but the minimal quality.</li></ol>
-     </li></ul>
-<!--l. 338--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">17   </span> <a 
- id="x1-1800017"></a>Perceptual quantization &#x0026; white-noise ﬁlling</h3>
-     <ul class="itemize1">
-     <li class="itemize">Depending on the desired output bit-rate and the frequency (see the ATH
-     model), the SAM applies a diﬀerent quantization step to barks. Roughly
-     speaking, the higher the compression ratio, the larger the quantization
-                                                                  
-
-                                                                  
-     step and therefore, the quantization noise; and the higher the frequency,
-     the wider the bark. Notice also that the perception of a tone in a bark
-     depends also on the temporal masking.
-     </li>
-     <li class="itemize">At decoding time, those barks that suﬀered the biggest lossess are usually
-     ﬁlled with <a 
-href="http://en.wikipedia.org/wiki/White_noise" >white noise</a> in order to <a 
-href="http://simplynoise.com/" >increase the perceived quality</a>.</li></ul>
-<!--l. 356--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">18   </span> <a 
- id="x1-1900018"></a>What is Ogg?</h3>
-     <ul class="itemize1">
-     <li class="itemize">A free, open container format maintained by the Xiph.Org Foundation.
-     </li>
-     <li class="itemize">It can multiplex a number of independent streams for audio, video, text
-     (such as subtitles), and metadata.</li></ul>
-<!--l. 368--><p class="noindent" >
-</p>
-   <h3 class="sectionHead"><span class="titlemark">19   </span> <a 
- id="x1-2000019"></a>The Ogg format</h3>
-<!--l. 371--><p class="noindent" > <div style="text-align:center;"> <img height=400 src="data/Ogg_Stream.png" /> </div> 
-</p>
-     <ul class="itemize1">
-     <li class="itemize">In a Ogg Vorbis stream, the ﬁrst pages store a header with the information
-     neccesary to decode the rest os pages (e.g. the code-book and the Huﬀman
-     tree). The rest of pages store audio.</li></ul>
-<!--l. 1--><p class="noindent" >
-</p>
-   <h3 class="likesectionHead"><a 
- id="x1-2100019"></a>References</h3>
-<!--l. 1--><p class="noindent" >
-   </p><div class="thebibliography">
-   <p class="bibitem" ><span class="biblabel">
- [1]<span class="bibsp">   </span></span><a 
- id="XVorbis"></a>The  Xiph  Open Source  Community.     Vorbis  audio  compression.
-   http://xiph.org/vorbis.
-                                                                  
-
-                                                                  
-   </p>
-   <p class="bibitem" ><span class="biblabel">
- [2]<span class="bibsp">   </span></span><a 
- id="XVorbis-doc"></a>Xiph.Org      Foundation.               Ogg      vorbis      documentation.
-   http://xiph.org/vorbis/doc.
-</p>
-   </div>
     
 </body> 
 </html>

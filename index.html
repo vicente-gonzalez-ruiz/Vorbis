@@ -26,25 +26,52 @@ class="ecrm-1200">Vicente Gonz</span><span
 class="ecrm-1200">á</span><span 
 class="ecrm-1200">lez Ruiz</span></div><br />
 <div class="date" ><span 
-class="ecrm-1200">May 13, 2019</span></div>
+class="ecrm-1200">January 1, 2020</span></div>
    </div>
+   <h3 class="likesectionHead"><a 
+ id="x1-1000"></a>Contents</h3>
+   <div class="tableofcontents">
+   <span class="sectionToc" >1 <a 
+href="#x1-20001" id="QQ2-1-2">Steps</a></span>
+<br />   <span class="sectionToc" >2 <a 
+href="#x1-30002" id="QQ2-1-3">Overlaped processing</a></span>
+<br />   <span class="sectionToc" >3 <a 
+href="#x1-40003" id="QQ2-1-4">Channel coupling</a></span>
+<br />   <span class="sectionToc" >4 <a 
+href="#x1-50004" id="QQ2-1-5">Perceptual quantization &#x0026; white-noise ﬁlling</a></span>
+<br />    <span class="subsectionToc" >4.1 <a 
+href="#x1-60004.1" id="QQ2-1-6">MDCT (Modiﬁed Discrete Cosine Transform)</a></span>
+<br />   <span class="sectionToc" >5 <a 
+href="#x1-70005" id="QQ2-1-7">Entropy coding</a></span>
+<br />    <span class="subsectionToc" >5.1 <a 
+href="#x1-80005.1" id="QQ2-1-8">Stream format</a></span>
+<br />    <span class="subsectionToc" >5.2 <a 
+href="#x1-90005.2" id="QQ2-1-9">Window</a></span>
+<br />   <span class="sectionToc" ><a 
+href="#Q1-1-10">References</a></span>
+   </div>
+<!--l. 6--><p class="noindent" >
+</p>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
- id="x1-10001"></a>Steps</h3>
-<!--l. 13--><p class="noindent" >
+ id="x1-20001"></a>Steps</h3>
+<!--l. 7--><p class="noindent" >
      </p><ol  class="enumerate1" >
      <li 
-  class="enumerate" id="x1-1002x1">Overlaped subband analysis using <a 
+  class="enumerate" id="x1-2002x1">Overlaped subband analysis using <a 
 href="http://en.wikipedia.org/wiki/Modified_discrete_cosine_transform" >MDCT</a>.
      </li>
      <li 
-  class="enumerate" id="x1-1004x2">Perceptual quantization.
+  class="enumerate" id="x1-2004x2">Perceptual quantization.
      </li>
      <li 
-  class="enumerate" id="x1-1006x3">Entropy coding.</li></ol>
-<!--l. 25--><p class="noindent" >
+  class="enumerate" id="x1-2006x3">Entropy coding.</li></ol>
+                                                                  
+
+                                                                  
+<!--l. 19--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
- id="x1-20002"></a>Overlaped processing</h3>
+ id="x1-30002"></a>Overlaped processing</h3>
                                                                   
 
                                                                   
@@ -54,22 +81,22 @@ href="http://en.wikipedia.org/wiki/Modified_discrete_cosine_transform" >MDCT</a>
  <br />&#x003C;--------Transform Step---------&#x003E;
  <br />                &#x003C;---------Transform Step--------&#x003E;
 </div>
-<!--l. 31--><p class="nopar" >
+<!--l. 25--><p class="nopar" >
 </p>
      <ul class="itemize1">
-     <li class="itemize">Each transform step inputs <!--l. 35--><math 
+     <li class="itemize">Each transform step inputs <!--l. 29--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mrow 
 ><mn>2</mn><mi 
 >N</mi></mrow></math>
-     samples and outputs <!--l. 35--><math 
+     samples and outputs <!--l. 29--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mrow 
 ><mi 
 >N</mi></mrow></math>
      MDCT coeﬁcients.
      </li>
-     <li class="itemize"><!--l. 38--><math 
+     <li class="itemize"><!--l. 32--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mrow 
 ><mi 
@@ -80,50 +107,50 @@ class="ecti-1000">complex </span>sounds
      improve the performance. For <span 
 class="ecti-1000">simple </span>sounds (such as a music instrument),
      large windows are better.</li></ul>
-<!--l. 44--><p class="noindent" >
+<!--l. 38--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
- id="x1-30003"></a>Channel coupling</h3>
-<!--l. 45--><p class="noindent" >Most of the time, similar sounds are transported in the channels of a non-mono audio
+ id="x1-40003"></a>Channel coupling</h3>
+<!--l. 39--><p class="noindent" >Most of the time, similar sounds are transported in the channels of a non-mono audio
 signal. Channel coupling decreases inter-channel redundancy, usually, using
 prediction techniques.
-</p><!--l. 49--><p class="noindent" >
+</p><!--l. 43--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
- id="x1-40004"></a>Perceptual quantization &#x0026; white-noise ﬁlling</h3>
-<!--l. 50--><p class="noindent" >Depending on the desired output bit-rate and the frequency (see the ATH model),
+ id="x1-50004"></a>Perceptual quantization &#x0026; white-noise ﬁlling</h3>
+<!--l. 44--><p class="noindent" >Depending on the desired output bit-rate and the frequency (see the ATH model),
 the SAM applies a diﬀerent quantization step to barks (see Section~<span 
 class="ecbx-1000">??</span>). Roughly
 speaking, the higher the compression ratio, the larger the quantization step and
 therefore, the quantization noise; and the higher the frequency, the wider the bark.
 Notice also that the perception of a tone in a bark depends also on the temporal
 masking.
-</p><!--l. 58--><p class="indent" >   At decoding time, those barks that suﬀered the biggest lossess are usually ﬁlled
+</p><!--l. 52--><p class="indent" >   At decoding time, those barks that suﬀered the biggest lossess are usually ﬁlled
 with <a 
 href="http://en.wikipedia.org/wiki/White_noise" >white noise</a> in order to <a 
 href="http://simplynoise.com/" >increase the perceived quality</a>.
                                                                   
 
                                                                   
-</p><!--l. 64--><p class="noindent" >
+</p><!--l. 58--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
- id="x1-50004.1"></a>MDCT (Modiﬁed Discrete Cosine Transform)</h4>
+ id="x1-60004.1"></a>MDCT (Modiﬁed Discrete Cosine Transform)</h4>
      <ul class="itemize1">
      <li class="itemize">Equivalent to apply a <a 
-href="http://en.wikipedia.org/wiki/Filter_bank" >bank</a> of <!--l. 68--><math 
+href="http://en.wikipedia.org/wiki/Filter_bank" >bank</a> of <!--l. 62--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mrow 
 ><mi 
 >N</mi></mrow></math>
      ﬁlters.
      </li>
-     <li class="itemize">Determines the correlation between a set of <!--l. 71--><math 
+     <li class="itemize">Determines the correlation between a set of <!--l. 65--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mrow 
 ><mn>2</mn><mi 
 >N</mi></mrow></math>
-     numbers (samples) and <!--l. 72--><math 
+     numbers (samples) and <!--l. 66--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mrow 
 ><mi 
@@ -131,21 +158,21 @@ display="inline" ><mrow
      <a 
 href="http://en.wikipedia.org/wiki/Orthogonality" >orthogonal</a><span class="footnote-mark"><a 
 href="index2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
- id="x1-5001f1"></a> 
+ id="x1-6001f1"></a> 
      <a 
-href="http://guru.multimedia.cx/mdct/" >cosine functions</a>. Therefore, at the input of the DCT there are <!--l. 77--><math 
+href="http://guru.multimedia.cx/mdct/" >cosine functions</a>. Therefore, at the input of the DCT there are <!--l. 71--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mrow 
 ><mn>2</mn><mi 
 >N</mi></mrow></math>
-     samples and at the output, <!--l. 78--><math 
+     samples and at the output, <!--l. 72--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mrow 
 ><mi 
 >N</mi></mrow></math>
      coeﬃcients.
      </li>
-     <li class="itemize">The MDCT coeﬃcients <!--l. 80--><math 
+     <li class="itemize">The MDCT coeﬃcients <!--l. 74--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mrow 
 ><mi 
@@ -153,7 +180,7 @@ display="inline" ><mrow
 class="MathClass-open">[</mo><mrow><mi 
 >w</mi></mrow><mo 
 class="MathClass-close">]</mo></mrow></mrow></math>
-     of the PCM samples <!--l. 80--><math 
+     of the PCM samples <!--l. 74--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mrow 
 ><mi 
@@ -162,8 +189,8 @@ class="MathClass-open">[</mo><mrow><mi
 >n</mi></mrow><mo 
 class="MathClass-close">]</mo></mrow></mrow></math>
      are deﬁned as: <table class="equation"><tr><td> <a 
- id="x1-5002r1"></a>
-     <!--l. 82--><math 
+ id="x1-6002r1"></a>
+     <!--l. 76--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" class="equation">
                   <mi 
@@ -218,24 +245,26 @@ open="]"  close="" ><mrow></mrow></mfenced></mstyle><mo
 class="MathClass-punc">.</mo>
 </math></td><td class="eq-no">(1)</td></tr></table>
      </li></ul>
-<!--l. 88--><p class="noindent" >
+<!--l. 82--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
- id="x1-60005"></a>Entropy coding</h3>
-<!--l. 89--><p class="noindent" >VLC of MDCT coeﬃcients.
+ id="x1-70005"></a>Entropy coding</h3>
+<!--l. 83--><p class="noindent" >VLC of MDCT coeﬃcients.
                                                                   
 
                                                                   
-</p><!--l. 91--><p class="noindent" >
+</p><!--l. 85--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">5.1   </span> <a 
- id="x1-70005.1"></a>Stream format</h4>
-<!--l. 92--><p class="noindent" > <div style="text-align:center;"> <img width=800 src="graphics/Ogg_Stream.png" /> </div> 
-</p><!--l. 94--><p class="noindent" >
+ id="x1-80005.1"></a>Stream format</h4>
+<!--l. 86--><p class="noindent" ><div style="text-align:center;"> <img width=800 src="graphics/Ogg_Stream.svg" /> </div> 
+</p><!--l. 88--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">5.2   </span> <a 
- id="x1-80005.2"></a>Window</h4>
-<!--l. 95--><p class="noindent" > <div style="text-align:center;"> <img width=400 src="graphics/window.png" /> </div>   <div style="text-align:center;"> <img width=400 src="graphics/window_spectrum.png" /> </div> 
+ id="x1-90005.2"></a>Window</h4>
+<!--l. 89--><p class="noindent" ><div style="text-align:center;"> <img width=600 src="graphics/window.svg" /> </div>  <div style="text-align:center;"> <img width=600 src="graphics/window_spectrum.svg" /> </div> 
+<a 
+ id="Q1-1-10"></a>
 </p>
     
 </body> 
